@@ -305,12 +305,52 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2 class="section-title">Contact</h2>
-        <div class="section-content">
-            <p>If you'd like to get in touch, please feel free to <a href="mailto:anshid@example.com" class="cta-button">Email Me</a></p>
-        </div>
-    </section>
+   <!-- Contact Section -->
+<section id="contact" class="section">
+    <h2 class="section-title">Contact</h2>
+    <div class="section-content">
+        <form id="contactForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit" class="cta-button">Submit</button>
+        </form>
+    </div>
+</section>
+
+<script>
+function validateForm() {
+    // Get form values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+    
+    // Check if all fields are filled
+    if (name === "" || email === "" || message === "") {
+        alert("All fields are required.");
+        return false;
+    }
+
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    // If all validations pass, show success alert
+    alert("Thank you! Your message has been successfully sent.");
+    
+    // Reset the form after successful submission
+    document.getElementById("contactForm").reset();
+    return false; // Prevent actual form submission for demonstration
+}
+</script>
 </body>
 </html>
